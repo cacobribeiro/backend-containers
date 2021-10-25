@@ -1,9 +1,19 @@
 const { Container } = require('../../models');
 
 module.exports = {
+    getAll: async (req, res) => {
+        try {
+            const containerInfo = await Container.findAll();
+
+            res.status(200).send({ containerInfo });
+        } catch (err) {
+            res.status(400).json({ message: err });
+        }
+    },
+
     get: async (req, res) => {
         try {
-            const { containerId } = req.body;
+            const { containerId } = req.params;
 
             const containerInfo = await Container.findOne({ where: { containerId } });
 
