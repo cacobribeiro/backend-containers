@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 module.exports = {
     get: {
-        body: Joi.object({
+        params: Joi.object({
             containerId: Joi.string().regex(/[a-z]{4}[0-9]{6}/i).required(),
         }),
     },
@@ -23,10 +23,10 @@ module.exports = {
             type: Joi.number().valid(20, 40),
             status: Joi.string().valid('Cheio', 'Vazio'),
             category: Joi.string().valid('Importação', 'Exportação'),
-        }).min(2),
+        }).min(2).max(6),
     },
 
-    patch: {
+    delete: {
         body: Joi.object({
             containerId: Joi.string().regex(/[a-z]{4}[0-9]{6}/i).required(),
         }),
