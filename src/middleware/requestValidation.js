@@ -2,6 +2,8 @@ const Joi = require('joi');
 
 module.exports = (schema) => {
   return (req, res, next) => {
+
+    console.log(`BODY > ${JSON.stringify(req.body, req.params, req.query)}`)
     // Transformamos o objeto em um schema Joi, aceitando qualquer campo no request.
     const reqSchema = Joi.object().keys(schema).unknown(true);
 
@@ -12,7 +14,7 @@ module.exports = (schema) => {
 
       const reqError = { message };
 
-      return res.status(400).send(reqError);
+      return res.status(400).json(reqError);
     }
 
     req.body = value.body;
