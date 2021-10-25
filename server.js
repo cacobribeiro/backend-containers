@@ -1,13 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const app = express();
 
-const routes = require('./src/routes/routes')
+const routes = require('./src/routes/routes');
 
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
-routes(app)
+app.use(cors());
+
+routes(app);
 
 const PORT = process.env.PORT || 3000;
 
