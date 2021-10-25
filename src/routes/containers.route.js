@@ -8,12 +8,15 @@ const containerValidation = require('../helpers/schema/containersValidation')
 const containersController = require('../controllers/containers');
 
 // Definição das rotas e os controllers correspondentes.
-router.get('/', validate(containerValidation.get) , containersController.get);
+router.get('/all' , containersController.getAll);
 
-router.post('/', validate(containerValidation.post) , containersController.post);
+router.get('/:containerId', validate(containerValidation.get) , containersController.get);
 
 router.patch('/', validate(containerValidation.patch) , containersController.patch);
 
+router.post('/', validate(containerValidation.post) , containersController.post);
+
 router.delete('/', validate(containerValidation.delete) , containersController.delete);
+
 
 module.exports = router;
